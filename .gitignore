@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
@@ -73,3 +74,27 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+=======
+# Unity generated folders
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemoryCaptures/
+
+# Visual Studio
+*.csproj
+*.sln
+*.user
+*.pidb
+*.booproj
+*.pdb
+
+# OS & IDE
+.DS_Store
+.vscode/
+.idea/
+>>>>>>> da248b7 (FlightShooting Assets)
