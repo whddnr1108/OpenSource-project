@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum ItemType { PowerUp = 0, Boom, HP }
+public enum ItemType { PowerUp = 0, Boom, HP, Shield }
 
 public class Item : MonoBehaviour
 {
@@ -42,8 +42,15 @@ public class Item : MonoBehaviour
 			case ItemType.HP:
 				player.GetComponent<PlayerHP>().CurrentHP += 2;
 				break;
-		}
-	}
+            case ItemType.Shield:
+                PlayerHP hp = player.GetComponent<PlayerHP>();
+                if (hp != null && !hp.HasShield)
+                {
+                    hp.GiveShield();
+                }
+                break;
+        }
+    }
 }
 
 

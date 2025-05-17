@@ -6,6 +6,12 @@ public class PlayerHP : MonoBehaviour
     [SerializeField]
     private float            maxHP = 10;        // 최대 체력
     private float            currentHP;         // 현재 체력
+
+    [SerializeField]
+    private Sprite normalSprite;
+    [SerializeField]
+    private Sprite shieldSprite;
+
     private SpriteRenderer   spriteRenderer;
     private PlayerController playerController;
 
@@ -16,6 +22,8 @@ public class PlayerHP : MonoBehaviour
         get => currentHP;
     }
 
+    public bool HasShield { get; private set; } = false;
+
     private void Awake()
     {
         currentHP        = maxHP;            // 현재 체력을 최대 체력과 같게 설정
@@ -25,6 +33,12 @@ public class PlayerHP : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+
+        if (HasShield)
+        {
+            return;
+        }
+
         // 현재 체력을 damage만큼 감소
         currentHP -= damage;
 
@@ -48,6 +62,31 @@ public class PlayerHP : MonoBehaviour
         // 플레이어의 색상을 원래 색상인 하얀색으로
         // (원래 색상이 하얀색이 아닐 경우 원래 색상 변수 선언)
         spriteRenderer.color = Color.white;
+    }
+
+    public void GiveShield()
+    {
+        if (!HasShield)
+        {
+            StartCoroutine(ShieldCoroutine());
+        }
+    }
+
+    private IEnumerator ShieldCoroutine()
+    {
+        HasShield = true;
+        UpdateShieldVisual();
+        yield return new WaitForSeconds(3f);
+        HasShield = false;
+        UpdateShieldVisual();
+    }
+
+    private void UpdateShieldVisual()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = HasShield ? shieldSprite : normalSprite;
+        }
     }
 }
 
