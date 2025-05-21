@@ -563,6 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 10
+  normalSprite: {fileID: 0}
+  shieldSprite: {fileID: 21300000, guid: c3f69cd513ee92e4d943a93c7f3578ad, type: 3}
 --- !u!95 &237278236
 Animator:
   serializedVersion: 3
