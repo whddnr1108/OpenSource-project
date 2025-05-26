@@ -22,9 +22,11 @@ public class EnemySpawner : MonoBehaviour
 	[SerializeField]
 	private	float			spawnTime;				// 생성 주기
 	[SerializeField]
-	private	int				maxEnemyCount = 100;	// 현재 스테이지의 최대 적 생성 숫자
+	private	int				maxEnemyCount = 100;    // 현재 스테이지의 최대 적 생성 숫자
+    [SerializeField] private GameObject warningBackground;
 
-	private void Awake()
+
+    private void Awake()
 	{
 		// 보스 등장 텍스트 비활성화
 		textBossWarning.SetActive(false);
@@ -56,7 +58,9 @@ public class EnemySpawner : MonoBehaviour
 			// 적을 최대 숫자까지 생성하면 적 생성 코루틴 중지, 보스 생성 코루틴 실행
 			if ( currentEnemyCount == maxEnemyCount )
 			{
-				StartCoroutine("SpawnBoss");
+                FindObjectOfType<WarningBackgroundController>().ShowWarningBackground(1f);
+
+                StartCoroutine("SpawnBoss");
 				break;
 			}
 
